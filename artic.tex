@@ -65,7 +65,7 @@ Several hardware and software pieces have been used in this work.
 
 	\textit{AprilTags} is a visual fiducial system widely used for tasks including robotics, augmented reality and camera calibration. This system was developed in 2011 by Ed Olson [ref]. The concept is similar to QR Codes in that they are two-dimensional bar codes. However, AprilTags are designted to encode far smaller data payloads (between 4 and 12 bits) and it introduces a new encoding system addressing some specific problems with 2D bar codes, enhancing robustness for rotation angles detection and against false positives, and allowing them to be detected from longer ranges.
 	
-	The AprilTags detection software detects any AprilTags in a given image, providing the unique ID of the tag as well as its location in the image. It can also provide the the relative transformation between tag and camera. For this system, AprilTags has only been used for the detection of tags in an image, obtaining the tag ID and the location (height and width pixel) in the given image.
+	The AprilTags detection software detects any AprilTags in a given image, providing the unique ID of the tag as well as its location in the image. It can also provide the the relative transformation between tag and camera. For this system, AprilTags has only been used for the detection of tags in an image, obtaining the tag ID and the location (height and width pixel) in the given image. [añadir explicación de por que no se ha usado la posición de la librería ¿?]
 	
 	\begin{figure}[h]
 		\begin{center}
@@ -261,7 +261,7 @@ The developed application is composed of two components, one of them is tasked w
 	\label{eq:yf}
 	\end{equation}
 	
-	In order to acquire the desired steering angle another factor must be obtained. That is the future lateral error, computed from the difference between the predicted future position and the desired path point(\ref{eq:le}). Finally, the steering angle is composed of the steering angle needed, $\delta{e}$, plus a steering angle gain that depends on the predicted future error (\ref{eq:deltatheta}). The factor $K_{g}$ is the gain rate of the steering adjustment and must be obtained experimentally. This adjustment ensures a minimization of the error by correcting vehicle's trajectory and smoothing its movement. The velocity commands sent to the quadricopter through the method \texttt{CMDVel()} are $v_{x}$, $v_{z}$ and $\delta_{\theta}$. 
+	In order to acquire the desired steering angle another factor must be obtained. That is the future lateral error, computed from the difference between the predicted future position and the desired path point(\ref{eq:le}). Finally, the steering angle is composed of the steering angle needed, $\delta{e}$, plus a steering angle gain that depends on the predicted future error (\ref{eq:deltatheta}). The steering angle needed is obtained by calculating the yaw angle needed by the vehicle to face the navigation point. The factor $K_{g}$ is the gain rate of the steering adjustment and must be obtained experimentally. This adjustment ensures a minimization of the error by correcting vehicle's trajectory and smoothing its movement. The velocity commands sent to the quadricopter through the method \texttt{CMDVel()} are $v_{x}$, $v_{z}$ and $\delta_{\theta}$. 
 
 	\begin{equation}
 	L_{fe} = - \sin \theta_{z} \cdot ( X_{path} - X_{f} ) + \sin \theta_{z} \cdot ( Y_{path} - Y_{f} )
